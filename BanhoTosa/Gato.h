@@ -2,11 +2,7 @@
 #define _T_GATO_H_
 
 typedef struct gato Gato;
-
-typedef enum{
-    MANSO,
-    BRAVO
-} AGRESSIVIDADE;
+#include "Cachorro.h"
 
 Gato* inicGato(char* nome, AGRESSIVIDADE);
 
@@ -15,6 +11,8 @@ AGRESSIVIDADE retornaAgressividadeGato (Gato*);
 char* retornaNomeGato (Gato*);
 
 void atribuiNivelAgressividadeGato (Gato*, AGRESSIVIDADE);
+
+void imprimeGato (Gato*);
 
 void liberaGato (Gato*);
 

@@ -9,10 +9,11 @@ struct cachorro
     char* nome;
 };
 
-Cachorro* inicCachorro(char* nome, AGRESSIVIDADE)
+Cachorro* inicCachorro(char* nome, AGRESSIVIDADE agressividade)
 {
     Cachorro* dog = (Cachorro*) malloc (sizeof(Cachorro));
     dog->nome = strdup (nome);
+    dog->situacao = agressividade;
     return dog;
 }
 
@@ -29,4 +30,18 @@ char* retornaNomeCachorro (Cachorro* dog)
 void atribuiNivelAgressividadeCachorro (Cachorro* dog, AGRESSIVIDADE situacao)
 {
     dog->situacao = situacao;
+}
+
+void imprimeCachorro (Cachorro* dog)
+{
+    if (dog->situacao == MANSO)
+        printf ("\tNome cachorro: %s. MANSO\n",dog->nome);
+    else
+        printf ("\tNome cachorro: %s. BRAVO\n",dog->nome);
+}
+
+void liberaCachorro (Cachorro* dog)
+{
+    free (dog->nome);
+    free (dog);
 }

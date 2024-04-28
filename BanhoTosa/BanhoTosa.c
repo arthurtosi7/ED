@@ -23,17 +23,17 @@ BanhoTosa* inicBanhoTosa(char* nome)
 void cadastraCachorro(BanhoTosa* loja, Cachorro* dog)
 {
     if (retornaAgressividadeCachorro (dog) == BRAVO)
-        InsereInicioLista (loja->listaBravos, (void*) dog);
+        InsereInicioLista (loja->listaBravos, (void*) dog, 1);
     else
-        InsereInicioLista (loja->listaMansos, (void*) dog);
+        InsereInicioLista (loja->listaMansos, (void*) dog, 1);
 }
 
 void cadastraGato(BanhoTosa* loja, Gato* cat)
 {
     if (retornaAgressividadeGato (cat) == BRAVO)
-        InsereInicioLista (loja->listaBravos, (void*) cat);
+        InsereInicioLista (loja->listaBravos, (void*) cat, 0);
     else
-        InsereInicioLista (loja->listaMansos, (void*) cat);
+        InsereInicioLista (loja->listaMansos, (void*) cat, 0);
 }
 
 void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat)
@@ -46,7 +46,7 @@ void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat)
         {
             if (ItemEstaNaLista(loja->listaBravos, (void*)cat))
                 RetiraItemLista (loja->listaBravos, (void*)cat);
-            InsereInicioLista(loja->listaMansos, (void*)cat);
+            InsereInicioLista(loja->listaMansos, (void*)cat, 0);
         }
     }
     else
@@ -57,7 +57,7 @@ void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat)
         {
             if (ItemEstaNaLista(loja->listaMansos, (void*)cat))
                 RetiraItemLista (loja->listaMansos, (void*)cat);
-            InsereInicioLista(loja->listaBravos, (void*)cat);
+            InsereInicioLista(loja->listaBravos, (void*)cat, 0);
         }
     }
 }
@@ -73,7 +73,7 @@ void atualizaSituacaoCachorro(BanhoTosa* loja, Cachorro* dog)
         {
             if (ItemEstaNaLista(loja->listaBravos, (void*)dog))
                 RetiraItemLista (loja->listaBravos, (void*)dog);
-            InsereInicioLista(loja->listaMansos, (void*)dog);
+            InsereInicioLista(loja->listaMansos, (void*)dog, 1);
         }
     }
     else
@@ -84,39 +84,35 @@ void atualizaSituacaoCachorro(BanhoTosa* loja, Cachorro* dog)
         {
             if (ItemEstaNaLista(loja->listaMansos, (void*)dog))
                 RetiraItemLista (loja->listaMansos, (void*)dog);
-            InsereInicioLista(loja->listaBravos, (void*)dog);
+            InsereInicioLista(loja->listaBravos, (void*)dog, 1);
         }
     }
-}
-
-void ImprimeTipoLista(void* animal, int tipo)
-{
-    if (tipo )
 }
 
 
 void imprimeBanhoTosa(BanhoTosa* loja)
 {
     printf ("%s\n", loja->nomeLoja);
-    printf ("Lista animais bravos da %s:\n", loja->nomeLoja);
-    ImprimeLista (loja->listaBravos, ImprimeTipoLista ());
-    printf ("Lista animais mansos da %s:\n", loja->nomeLoja);
+    printf ("\nLista animais bravos da %s:\n\n", loja->nomeLoja);
+    ImprimeLista (loja->listaBravos);
+    printf ("\nLista animais mansos da %s:\n\n", loja->nomeLoja);
     ImprimeLista (loja->listaMansos);
+    printf ("Fim impressora,\n");
 }
 
 
-/* Calcula o valor que a loja vai receber caso todos os animais tomem banho.
- Valor Gato: 30 reais, Valor Cachorro: 40 reais. Caso o animal seja agressivo, é cobrado uma taxa extra de 5 reais.
-* inputs: referencia para a loja
-* output: valor da receita
-* pre-condicao: loja alocada
-* pos-condicao: nenhuma alteração feita nos conteúdos das estruturas de dados */
-float calculaReceita(BanhoTosa* loja);
+float calculaReceita(BanhoTosa* loja)
+{
+    float receita;
+    receita = 35.0*(retornaQuantidadeGatoLista(loja->listaBravos)) + 45.0*retornaQuantidadeCachorroLista(loja->listaBravos);
+    receita += 30.0*(retornaQuantidadeGatoLista(loja->listaMansos)) + 40.0*retornaQuantidadeCachorroLista(loja->listaMansos);
+    return receita;
+}
 
-
-/* Libera toda a memória alocada
-* inputs: referencia para a loja
-* output: não tem
-* pre-condicao: loja alocada
-* pos-condicao: Toda a memória liberada, a não ser gatos e cachorros, que são responsabilidade do cliente. */
-void liberaBanhoTosa(BanhoTosa* loja);
+void liberaBanhoTosa(BanhoTosa* loja)
+{
+    free (loja->nomeLoja);
+    DeletaLista (loja->listaBravos);
+    DeletaLista (loja->listaMansos);
+    free (loja);
+}

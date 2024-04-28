@@ -4,8 +4,8 @@
 typedef struct cachorro Cachorro;
 
 typedef enum{
-    MANSO,
-    BRAVO
+    MANSO = 0,
+    BRAVO = 1
 } AGRESSIVIDADE;
 
 Cachorro* inicCachorro(char* nome, AGRESSIVIDADE);

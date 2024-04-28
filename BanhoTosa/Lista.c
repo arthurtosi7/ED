@@ -17,7 +17,7 @@ struct lista
     Celula* ult;
 };
 
-tLista* CriaLista()
+tLista* criaLista()
 {
     tLista* sentinela = (tLista*) malloc (sizeof(tLista));
     sentinela->prim = NULL;
@@ -25,10 +25,11 @@ tLista* CriaLista()
     return sentinela;
 }
 
-void InsereInicioLista (tLista* lista, void* animal)
+void InsereInicioLista (tLista* lista, void* animal, int tipo)
 {
     Celula* new_cel = (Celula*) malloc (sizeof(Celula));
     new_cel->animal = animal;
+    new_cel->tipo = tipo;
     if (lista->prim == NULL)
     {
         lista->prim = new_cel;
@@ -59,7 +60,7 @@ void InsereFinalLista(tLista* lista, void* animal)
     return;
 }
 
-void* RetiraItemLista (tLista* lista, void* animal)
+void RetiraItemLista (tLista* lista, void* animal)
 {
     Celula* c = lista->prim;
     Celula* ant = NULL;
@@ -105,14 +106,46 @@ int ItemEstaNaLista (tLista* lista, void* animal)
     return 1;
 }
 
+int retornaQuantidadeGatoLista (tLista* lista)
+{
+    Celula* c = lista->prim;
+    int count = 0;
+    while (c != NULL)
+    {
+        if (c->tipo == 0) // assumindo que o tipo 2 é Gato
+            count++;
+        c = c->prox;
+    }  
+    return count;
+}
+
+int retornaQuantidadeCachorroLista (tLista* lista)
+{
+    Celula* c = lista->prim;
+    int count = 0;
+    while (c != NULL)
+    {
+        if (c->tipo == 1) // assumindo que o tipo 1 é Cachorro
+            count++;
+        c = c->prox;
+    }  
+    return count;
+}
+
+
 void ImprimeLista (tLista* lista)
 {
     Celula* c = lista->prim;
     int i = 1;
+    if (c == NULL)
+        printf ("Lista vazia.\n");
     while (c != NULL)
     {
         printf ("Animal %d:\n", i);
-        
+        if (c->tipo == 1)
+            imprimeCachorro ((Cachorro*)c->animal);
+        else
+            imprimeGato ((Gato*)c->animal);
         c = c->prox;
         i++;
     }  
@@ -126,6 +159,10 @@ void DeletaLista (tLista* lista)
     {
         ant = c;
         c = c->prox;
+        // if (ant->tipo == 0)
+        //     liberaGato ((Gato*)ant->animal);
+        // else
+        //     liberaCachorro ((Cachorro*)ant->animal);
         free (ant);
     }
     free (lista);

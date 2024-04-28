@@ -1,52 +1,52 @@
-//
-//  testador1.c
-//  Testa criação, inserção, impressão
-//  Pode valer até 6 pontos
-//  Created by Patricia Dockhorn Costa on 21/06/22.
-//
+// //
+// //  testador1.c
+// //  Testa criação, inserção, impressão
+// //  Pode valer até 6 pontos
+// //  Created by Patricia Dockhorn Costa on 21/06/22.
+// //
 
-#include <stdio.h>
-#include "BanhoTosa.h"
-/*
-int main(int argc, const char * argv[]) {
+// #include <stdio.h>
+// #include "BanhoTosa.h"
 
-    //cadastra uns cachorrinhos e gatinhos
-    //nome e nível de agressividade
+// int main(int argc, const char * argv[]) {
+
+//     //cadastra uns cachorrinhos e gatinhos
+//     //nome e nível de agressividade
     
-    Cachorro* iris = inicCachorro("Iris", BRAVO);
-    Cachorro* bob = inicCachorro("Bob", MANSO);
-    Cachorro* baby = inicCachorro("Baby", MANSO);
+//     Cachorro* iris = inicCachorro("Iris", BRAVO);
+//     Cachorro* bob = inicCachorro("Bob", MANSO);
+//     Cachorro* baby = inicCachorro("Baby", MANSO);
 
-    Gato* branca = inicGato("Branca", BRAVO);
-    Gato* ronaldo = inicGato("RonaldoCesar", MANSO);
+//     Gato* branca = inicGato("Branca", BRAVO);
+//     Gato* ronaldo = inicGato("RonaldoCesar", MANSO);
     
-    //cria uma instância do banho tosa
-    BanhoTosa* loja = inicBanhoTosa("PetShow");
+//     //cria uma instância do banho tosa
+//     BanhoTosa* loja = inicBanhoTosa("PetShow");
         
-    //cadastra os cachorrinhos e gatinhos
-    cadastraGato(loja, branca);
-    cadastraGato(loja, ronaldo);
+//     //cadastra os cachorrinhos e gatinhos
+//     cadastraGato(loja, branca);
+//     cadastraGato(loja, ronaldo);
     
-    cadastraCachorro(loja, iris);
-    cadastraCachorro(loja, bob);
-    cadastraCachorro(loja, baby);
+//     cadastraCachorro(loja, iris);
+//     cadastraCachorro(loja, bob);
+//     cadastraCachorro(loja, baby);
     
-    //imprime tudo
-    imprimeBanhoTosa(loja);
+//     //imprime tudo
+//     imprimeBanhoTosa(loja);
     
-    //calcula valor a receber
-    float valor = calculaReceita(loja);
-    printf("\nValor a Receber %.2f", valor);
+//     //calcula valor a receber
+//     float valor = calculaReceita(loja);
+//     printf("Receita = %.2f\n", valor);
     
-    //libera tudo
-    liberaBanhoTosa(loja);
+//     //libera tudo
+//     liberaBanhoTosa(loja);
     
-    liberaGato(branca);
-    liberaGato(ronaldo);
+//     liberaGato(branca);
+//     liberaGato(ronaldo);
     
-    liberaCachorro(iris);
-    liberaCachorro(bob);
-    liberaCachorro(baby);
+//     liberaCachorro(iris);
+//     liberaCachorro(bob);
+//     liberaCachorro(baby);
 
-    return 0;
-}*/
+//     return 0;
+// }
