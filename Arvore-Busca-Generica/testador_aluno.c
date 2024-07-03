@@ -1,4 +1,4 @@
-#include "search_tree.h"
+#include "arvAluno.h"
 #include "aluno.h"
 #include <stdio.h>
 
@@ -11,21 +11,23 @@ int main() {
     Aluno* aluno4 = criaAluno("AA", "101");
     Aluno* aluno5 = criaAluno("AB", "100");
 
-    Tree* root = createNullTree();
-    root = insertTree(root, aluno1, comparaAlunos);
-    root = insertTree(root, aluno0, comparaAlunos);
-    root = insertTree(root, aluno2, comparaAlunos);
-    root = insertTree(root, aluno3, comparaAlunos);
-    root = insertTree(root, aluno4, comparaAlunos);
-    root = insertTree(root, aluno5, comparaAlunos);
+    ArvAluno* root = createNullArvAluno();
+    root = insertArvAluno(root, aluno0);
+    root = insertArvAluno(root, aluno1);
+    root = insertArvAluno(root, aluno2);
+    root = insertArvAluno(root, aluno3);
+    root = insertArvAluno(root, aluno4);
+    root = insertArvAluno(root, aluno5);
+    imprimeArvAluno(root);
 
     //Tree* busca = buscarootore(aluno3, root);
     //imprimeAluno (retornaAluno (busca));
     printf ("-------------------\n");
-    printTree (root, imprimeAluno);
-    root = removeTree (root, aluno3, comparaAlunos);
-    printTree(root, imprimeAluno);
-    freeTree (root);
+    imprimeArvAluno(root);
+    printf ("-------------------\n");
+    root = removeArvAluno(root, aluno0);
+    imprimeArvAluno(root);
+    liberaArvAluno(root);
 
     liberaAluno (aluno1);
     liberaAluno (aluno2);
